@@ -24,9 +24,7 @@ from datasets.datafeeder_tacotron import DataFeederTacotron, _prepare_inputs
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
-
 log = infolog.log
-
 
 def create_batch_inputs_from_texts(texts):
     sequences = [text_to_sequence(text) for text in texts]
@@ -110,7 +108,7 @@ def save_and_plot(sequences, spectrograms,alignments, log_dir, step, loss, prefi
 def train(log_dir, config):
     config.data_paths = config.data_paths  # ['datasets/moon']
 
-    data_dirs = config.data_paths  # ['datasets/moon\\data']
+    data_dirs = config.data_paths  # ['datasets/moon/data']
     num_speakers = len(data_dirs)
     config.num_test = config.num_test_per_speaker * num_speakers  # 2*1
 
@@ -255,16 +253,10 @@ def train(log_dir, config):
 
 def main():
     parser = argparse.ArgumentParser()
-
     parser.add_argument('--log_dir', default='logdir-tacotron')
-    
-    parser.add_argument('--data_paths', default='.\\data\\moon,.\\data\\son')
-    
-    
+    parser.add_argument('--data_paths', default='./data/moon,./data/son')
     parser.add_argument('--load_path', default=None)   # 아래의 'initialize_path'보다 우선 적용
     #parser.add_argument('--load_path', default='logdir-tacotron/moon+son_2018-12-25_19-03-21')
-    
-    
     parser.add_argument('--initialize_path', default=None)   # ckpt로 부터 model을 restore하지만, global step은 0에서 시작
 
     parser.add_argument('--batch_size', type=int, default=32)

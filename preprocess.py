@@ -1,12 +1,11 @@
 # coding: utf-8
+
 """
-python preprocess.py --num_workers 10 --name son --in_dir .\datasets\son --out_dir .\data\son
-python preprocess.py --num_workers 10 --name moon --in_dir .\datasets\moon --out_dir .\data\moon
- ==> out_dir에  'audio', 'mel', 'linear', 'time_steps', 'mel_frames', 'text', 'tokens', 'loss_coeff'를 묶은 npz파일이 생성된다.
- 
- 
- 
+python preprocess.py --num_workers 10 --name son --in_dir ./datasets/son --out_dir ./data/son
+python preprocess.py --num_workers 10 --name moon --in_dir ./datasets/moon --out_dir ./data/moon
+==> out_dir에  'audio', 'mel', 'linear', 'time_steps', 'mel_frames', 'text', 'tokens', 'loss_coeff'를 묶은 npz파일이 생성된다.
 """
+
 import argparse
 import os
 from multiprocessing import cpu_count

@@ -2,7 +2,6 @@
 """
 - train data를 speaker를 분리된 디렉토리로 받아서, speaker id를 디렉토리별로 부과.
 - file name에서 speaker id를 추론하는 방식이 아님.
-
 """
 
 from __future__ import print_function
@@ -33,27 +32,21 @@ def main():
     
     parser = argparse.ArgumentParser(description='WaveNet example network')
     
-    DATA_DIRECTORY =  '.\\data\\moon,.\\data\\son'
+    DATA_DIRECTORY =  './data/moon,./data/son'
     parser.add_argument('--data_dir', type=str, default=DATA_DIRECTORY, help='The directory containing the VCTK corpus.')
 
 
-    LOGDIR = None
-    #LOGDIR = './/logdir-wavenet//train//2018-12-21T22-58-10'
+    #LOGDIR = None
+    LOGDIR = './logdir-tacotron/moon+son_2019-03-10_23-39-06'
 
     parser.add_argument('--logdir', type=str, default=LOGDIR,help='Directory in which to store the logging information for TensorBoard. If the model already exists, it will restore the state and will continue training. Cannot use with --logdir_root and --restore_from.')
-    
-    
     parser.add_argument('--logdir_root', type=str, default=None,help='Root directory to place the logging output and generated model. These are stored under the dated subdirectory of --logdir_root. Cannot use with --logdir.')
     parser.add_argument('--restore_from', type=str, default=None,help='Directory in which to restore the model from. This creates the new model under the dated directory in --logdir_root. Cannot use with --logdir.')
-    
     
     CHECKPOINT_EVERY = 1000   # checkpoint 저장 주기
     parser.add_argument('--checkpoint_every', type=int, default=CHECKPOINT_EVERY,help='How many steps to save each checkpoint after. Default: ' + str(CHECKPOINT_EVERY) + '.')
     
-    
-    
-   
-    
+
     config = parser.parse_args()  # command 창에서 입력받을 수 있는 조건
     config.data_dir = config.data_dir.split(",")
     
